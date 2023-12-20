@@ -43,6 +43,18 @@ public class CustomCar : MonoBehaviour
 
             _frontWheels[i].steerAngle = steering * _maxAngle * factor;
         }
+
+        UpdateVisuals();
+    }
+
+    private void UpdateVisuals()
+    {
+        for (int i = 0; i < _frontWheels.Length; i++)
+        {
+            _frontWheels[i].GetWorldPose(out Vector3 pos, out Quaternion quat);
+            _frontWheelsModels[i].position = pos;
+            _frontWheelsModels[i].rotation= quat;
+        }
     }
 
     private void OnDrawGizmos()
